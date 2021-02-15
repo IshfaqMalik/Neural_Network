@@ -20,7 +20,7 @@ class NeuralNetwork(object):
         #
         # Note: in Python, you can define a function with a lambda expression,
         # as shown below.
-        self.activation_function = lambda x : 1 / 1 + np.exp(-x) # Replace 0 with your sigmoid calculation.
+        self.activation_function = lambda x : 1 / (1 + np.exp(-x)) # Replace 0 with your sigmoid calculation.
         
         ### If the lambda code above is not something you're familiar with,
         # You can uncomment out the following three lines and put your 
@@ -70,7 +70,7 @@ class NeuralNetwork(object):
 
         # TODO: Output layer - Replace these values with your calculations.
         final_inputs = np.dot(hidden_outputs, self.weights_hidden_to_output) # signals into final output layer
-        final_outputs = self.activation_function (final_inputs) # signals from final output layer
+        final_outputs = final_inputs # signals from final output layer
         
         return final_outputs, hidden_outputs
 
@@ -95,7 +95,7 @@ class NeuralNetwork(object):
         hidden_error = np.dot( self.weights_hidden_to_output, error)
         
         # TODO: Backpropagated error terms - Replace these values with your calculations.
-        output_error_term = hidden_error
+        output_error_term = error
         
         hidden_error_term = hidden_error * hidden_outputs *(1 - hidden_outputs)
         
@@ -128,7 +128,7 @@ class NeuralNetwork(object):
         
         #### Implement the forward pass here ####
         # TODO: Hidden layer - replace these values with the appropriate calculations.
-        hidden_inputs = self.activation_function(np.dot(features, self.weights_input_to_hidden))
+        hidden_inputs = np.dot(features, self.weights_input_to_hidden
         hidden_outputs = self.activation_function(hidden_inputs) #m hidden layer
         
         # TODO: Output layer - Replace these values with the appropriate calculations.
